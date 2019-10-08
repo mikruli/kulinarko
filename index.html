@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kulinarko</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    #footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #container {
+        margin-top: 150px;
+        padding-bottom: 30px;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .form-check,
+    .dropdown {
+        margin: 5px 5px 5px 15px;
+    }
+</style>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar bg-warning navbar-light navbar-expand-sm fixed-top">
+        <a class="navbar-brand" href="index.html"><img src="./media/LogoKulinarko.png" alt="Logo"
+                style="width: 120px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseid">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapseid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link p-4 font-weight-bolder h4" href="GlavnaJela.html">Glavna jela</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-4 font-weight-bolder h4" href="Deserti.html">Deserti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-4 font-weight-bolder h4" href="Ribe.html">Ribe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-4 font-weight-bolder h4" href="Salate.html">Salate</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Pocetak glavnog dela stranice -->
+    <div id="container">
+        <h4 class="pl-2">Unesite namernice koje imate a mi ćemo za vas pripremiti recepte:</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="jaja">
+            <label class="form-check-label" for="jaja">
+                Jaja
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="brasno">
+            <label class="form-check-label" for="brasno">
+                Brašno
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="secer">
+            <label class="form-check-label" for="secer">
+                Šećer
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="ulje">
+            <label class="form-check-label" for="ulje">
+                Ulje
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="kvasac">
+            <label class="form-check-label" for="kvasac">
+                Kvasac
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="testenina">
+            <label class="form-check-label" for="testenina">
+                Testenina
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="med">
+            <label class="form-check-label" for="med">
+                Med
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="cokolada">
+            <label class="form-check-label" for="cokolada">
+                Čokolada
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="kakao">
+            <label class="form-check-label" for="kakao">
+                Kakao
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="susam">
+            <label class="form-check-label" for="susam">
+                Susam
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="prezle">
+            <label class="form-check-label" for="prezle">
+                Prezle
+            </label>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Mlečni proizvodi
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="mleko">
+                    <label class="form-check-label" for="mleko">
+                        Mleko
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="sir">
+                    <label class="form-check-label" for="sir">
+                        Sir
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="pavlaka">
+                    <label class="form-check-label" for="pavlaka">
+                        Pavlaka
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="maslac">
+                    <label class="form-check-label" for="maslac">
+                        Maslac
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Povrće
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="krompir">
+                    <label class="form-check-label" for="krompir">
+                        Krompir
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="crniluk">
+                    <label class="form-check-label" for="crniluk">
+                        Crni luk
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="kupus">
+                    <label class="form-check-label" for="kupus">
+                        Kupus
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="paradajz">
+                    <label class="form-check-label" for="paradajz">
+                        Paradajz
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="paprika">
+                    <label class="form-check-label" for="paprika">
+                        Paprika
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="tikvice">
+                    <label class="form-check-label" for="tikvice">
+                        Tikvice
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Voće
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="ananas">
+                    <label class="form-check-label" for="ananas">
+                        Ananas
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="banane">
+                    <label class="form-check-label" for="banane">
+                        Banane
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="jagode">
+                    <label class="form-check-label" for="jagode">
+                        Jagode
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="jabuke">
+                    <label class="form-check-label" for="jabuke">
+                        Jabuke
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="visnje">
+                    <label class="form-check-label" for="visnje">
+                        Višnje
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Orašasti plodovi
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="orasi">
+                    <label class="form-check-label" for="orasi">
+                        Orasi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="bademi">
+                    <label class="form-check-label" for="bademi">
+                        Bademi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="lesnici">
+                    <label class="form-check-label" for="lesnici">
+                        Lešnici
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="kikiriki">
+                    <label class="form-check-label" for="kikiriki">
+                        Kikiriki
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Meso - riba
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="svinjetina">
+                    <label class="form-check-label" for="svinjetina">
+                        Svinjetina
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="teletina">
+                    <label class="form-check-label" for="teletina">
+                        Teletina
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="govedina">
+                    <label class="form-check-label" for="govedina">
+                        Govedina
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="jagnjetina">
+                    <label class="form-check-label" for="jagnjetina">
+                        Jagnjetina
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="divljac">
+                    <label class="form-check-label" for="divljac">
+                        Divljač
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="morskiplodovi">
+                    <label class="form-check-label" for="morskiplodovi">
+                        Morski plodovi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="morskariba">
+                    <label class="form-check-label" for="morskariba">
+                        Morska riba
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="recnariba">
+                    <label class="form-check-label" for="recnariba">
+                        Rečna riba
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger ml-5 mt-3">Pronađi recepte</button>
+    </div>
+    <br>
+    <br>
+
+    <!-- Pocetak footera -->
+    <div id="footer">
+        <footer class="row bg-warning">
+            <p class="col-6">Copyright © 2019. Sva prava zadržana.</p>
+            <p class="col-6 font-italic text-right">MATF IT - Grupa B - DRD Team</p>
+        </footer>
+    </div>
+</body>
+
+</html>
