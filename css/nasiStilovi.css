@@ -1,0 +1,22 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+
+/*body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+*/
+
+.masthead {
+    /* margin-bottom: 300px; */
+	padding-top: 25px;
+	padding-bottom: 100px;
+	background-image: url('../media/LogoKulinarko.png');
+	/* Full height */
+	width: 185px;
+
+	/* Center and scale the image nicely */
+	background-position: left;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
