@@ -66,10 +66,10 @@
                     <a class="nav-link" href="#"> Prijava </a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>
-            </form>
+            </form> -->
         </div>
     </nav>
     <!-- SADRZAJ -->
@@ -146,6 +146,17 @@
                             $imeAutora = $row_users["ime"];
                         }
 
+                        // Prikazi prvih >150 karaktera recepta ali tako da poslednja rec bude cela
+
+                        $pozPoslednjeCeleReci = 0;
+                        $sadrzajRecepta = $row["sadrzaj_recepta"];
+                        $pozPoslednjeCeleReci = strpos($sadrzajRecepta, '.', 150);
+                        $skraceniSadrzaj = substr($sadrzajRecepta, 0, $pozPoslednjeCeleReci);
+                        $skraceniSadrzaj = $skraceniSadrzaj." ...";
+                        // echo "ECHO: ".$pozPoslednjeCeleReci; // sluzi samo za testiranje
+                        // echo "TIP SADRZAJA RECEPTA: ".gettype($sadrzajRecepta); // sluzi samo za testiranje
+                        // echo "DUZINA SADRZAJA: ".strlen($sadrzajRecepta); // sluzi samo za testiranje
+
                         echo "<div class='mt-5'>";
                         echo "<div class='row'>";
                         echo "<h2 class='col-12 border-bottom'> <strong>".$row["naziv_recepta"]."</strong> </h2>";
@@ -156,9 +167,13 @@
                         echo "<div class='row'>";
                         echo "<img src='".$row["slika_jela"]."' alt='Ime slike' class='col-3 rounded float-left'>";
                         echo "<p clas='col-9'>";
-                        echo "<div class='d-flex flex-column mb-3'>";
-                        echo "<div class='p-2'> It uses utility classes for typography and spacing to space content out within the larger container. </div>";
-                        echo "<div class='p-2'> <a class='btn btn-info btn-lg float-left' href='#' role='button'> Read more >> </a> </div>";
+                        echo "<div class='d-flex flex-column mb-3 col-9'>";
+                        echo "<div class='p-2 text-justify'>".$skraceniSadrzaj."</div>";
+                        echo "<div class='p-2'>";
+                        echo "<form method='POST' action='recept_detaljno.php'>";
+                        echo "<button type='submit' class='btn btn-primary float-left'> Read More >> </button>";
+                        echo "</form>";
+                        echo "</div>";
                         echo "</div>";
                         echo "</p>";
                         echo "</div>";
@@ -218,31 +233,9 @@
 
     </div> <!-- /container -->
 
-    <!-- <div class="row my-4">
-        <ul class="pagination pagination-lg mx-auto">
-            <li class="page-item disabled">
-            <a class="page-link" href="#">&laquo;</a>
-            </li>
-            <li class="page-item active">
-            <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-            <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-            <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-            <a class="page-link" href="#">4</a>
-            </li>
-            <li class="page-item">
-            <a class="page-link" href="#">5</a>
-            </li>
-            <li class="page-item">
-            <a class="page-link" href="#">&raquo;</a>
-            </li>
-        </ul>
-    </div> -->
+    <!-- <form method="POST" action="01_handle.php">
+        <button type="submit" class="btn btn-primary float-left"> Read More >> </button>
+    </form> -->
     
 </body>
 </html>
