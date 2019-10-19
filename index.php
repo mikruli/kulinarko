@@ -78,6 +78,10 @@
     </div> -->
     <div class="container mt-5 pt-5">
 
+        <h2 class="border-bottom border-primary"> <strong> KULINARKO </strong> </h2>
+        <!-- <hr> -->
+        <p> Na ovoj internet starnici možete da pronađete najrazličitije recepte domaćih jela. </p>
+
         <?php
             // header('Content-Type: application/json');
 
@@ -87,6 +91,7 @@
             $password = "";
             $dbname = "kulinarko";
             $datatable = "recepti"; // MySQL ime tabele
+            $datatable_kor = "korisnici"; // MySQL ime tabele
             $results_per_page = 10; // broj recepata po strani
 
             // Uspostavi novu konekciju
@@ -101,57 +106,143 @@
                 $mysqli->set_charset("utf8");
 
                 if (isset($_GET["page"])) {
-                    $page = $_GET["page"];
+                    $page = $_GET["page"]; // oznaka trenutno aktivne strane
                 } else {
                     $page = 1;
                 };
 
-                // echo "Broj strana = ".$page;
+                // echo "Broj strana = ".$page; // sluzi samo za testiranje
 
                 $start_from = ($page-1) * $results_per_page;
 
-                // echo "Pocni od = ".$start_from;
+                // echo "Pocni od = ".$start_from; // sluzi samo za testiranje
 
                 $query = "SELECT * FROM ".$datatable." ORDER BY RECEPT_ID ASC LIMIT $start_from, ".$results_per_page;
                 $result = $mysqli->query($query);
 
                 $n = $result->num_rows;
-                // echo "Broj rezultata = ".$n;
+                // echo "Broj rezultata = ".$n; // sluzi samo za testiranje
 
                 if ( $result == FALSE ) {
                     echo "Error: ".$mysqli->error($connection);
                 } else {
-                    echo "<table>";
-                    echo "<tr>";
-                    echo "<td><strong> Slika </strong></td>";
-                    echo "<td><strong> Ime recepta </strong></td>";
-                    echo "</tr>";
 
                     while( $row = $result->fetch_assoc() ) {
-                        echo "<tr>";
-                        echo "<td>  <img src='".$row["slika_jela"]."' alt='Smiley face' height='100' width='200'>  </td>";
-                        echo "<td>".$row["naziv_recepta"]."</td>";
-                        echo "</tr>";
+
+                        // pretvara timestap iz baze mySql baze u format datuma u php-u
+                        $timestamp = strtotime($row["datum_unosa"]);
+                        $date = date('d-m-Y', $timestamp);
+                        
+                        // upit za trazenje imena autora recepta na osnovu korisnickog imena
+                        $query_imeAutora = "SELECT * FROM ".$datatable_kor." WHERE korisnicko_ime = '".$row["autor_recepta"]."'";
+                        $result_imeAutora = $mysqli->query($query_imeAutora);
+                        $broj_redova = $result_imeAutora->num_rows; // rezultat moze da bude samo jedan
+                        // echo "\n BROJ REDOVA JE: ".$broj_redova; // sluzi samo za testiranje
+
+                        if ( $result_imeAutora == FALSE ) {
+                            $imeAutora = $row["autor_recepta"]; // ako se desila greska stavi korisnicko ime
+                        } else {
+                            $row_users = $result_imeAutora->fetch_assoc();
+                            $imeAutora = $row_users["ime"];
+                        }
+
+                        echo "<div class='mt-5'>";
+                        echo "<div class='row'>";
+                        echo "<h2 class='col-12 border-bottom'> <strong>".$row["naziv_recepta"]."</strong> </h2>";
+                        echo "</div>";
+                        echo "<div class='row'>";
+                        echo "<p class='col-12 text-capitalize'> <h6> <i class='fas fa-user ml-3 mr-1'></i>".$imeAutora." <i class='far fa-clock ml-2 mr-1'></i>".$date."</h6> </p>";
+                        echo "</div>";
+                        echo "<div class='row'>";
+                        echo "<img src='".$row["slika_jela"]."' alt='Ime slike' class='col-3 rounded float-left'>";
+                        echo "<p clas='col-9'>";
+                        echo "<div class='d-flex flex-column mb-3'>";
+                        echo "<div class='p-2'> It uses utility classes for typography and spacing to space content out within the larger container. </div>";
+                        echo "<div class='p-2'> <a class='btn btn-info btn-lg float-left' href='#' role='button'> Read more >> </a> </div>";
+                        echo "</div>";
+                        echo "</p>";
+                        echo "</div>";
+                        echo "</div>";
                     }
-                    echo "</table>";
 
                     $sql = "SELECT COUNT(RECEPT_ID) AS total FROM ".$datatable;
                     $rs_result = $mysqli->query($sql);
                     $row = $rs_result->fetch_assoc();
                     $total_pages = ceil($row["total"] / $results_per_page); // racuna ukupan broj strana koje se prikazuju
 
-                    for ( $i = 1; $i <= $total_pages; $i++ ) {  // print links for all pages
+                    // navigacija u dnu strane
+                    echo "<div class='row my-4'>";
+                    echo "<ul class='pagination pagination-lg mx-auto'>";
+
+                    // navigacija za prethodnu stranu
+                    if ( $page == 1 ) {
+                        echo "<li class='page-item disabled'>";
+                        echo "<a class='page-link' href='#'>&laquo;</a>";
+                        echo "</li>";
+                    } else {
+                        $prethodnaStrana = $page - 1;
+                        echo "<li class='page-item'>";
+                        echo "<a class='page-link' href='index.php?page=".$prethodnaStrana."'>&laquo;</a>";
+                        echo "</li>";
+                    }
+
+                    // navigacija po stranama
+                    for ( $i = 1; $i <= $total_pages; $i++ ) {  // ispisuje linkove za sve strane
+                        echo "<li class='page-item'>";
                         echo "<a href='index.php?page=".$i."'";
+                        // echo "<a href='index.php?page=".$i."'";
                         if ( $i == $page ) {
-                            echo " class='curPage'";
+                            echo " class='page-link curPage active'";
+                        } else {
+                            echo " class='page-link'";
                         }
-                        echo ">".$i."</a> "; 
-                    } 
+                        echo ">".$i."</a> ";
+                        echo "</li>";
+                    }
+
+                    // navigacija za sledeću stranu
+                    if ( $page == $total_pages ) {
+                        echo "<li class='page-item disabled'>";
+                        echo "<a class='page-link' href='#'>&raquo;</a>";
+                        echo "</li>";
+                    } else {
+                        $sledecaStrana = $page + 1;
+                        echo "<li class='page-item'>";
+                        echo "<a class='page-link' href='index.php?page=".$sledecaStrana."'>&raquo;</a>";
+                        echo "</li>";
+                    }
                 }
             }
+
         ?>
 
     </div> <!-- /container -->
+
+    <!-- <div class="row my-4">
+        <ul class="pagination pagination-lg mx-auto">
+            <li class="page-item disabled">
+            <a class="page-link" href="#">&laquo;</a>
+            </li>
+            <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link" href="#">4</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link" href="#">5</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link" href="#">&raquo;</a>
+            </li>
+        </ul>
+    </div> -->
     
 </body>
 </html>
