@@ -72,10 +72,8 @@
             </form> -->
         </div>
     </nav>
-    <!-- SADRZAJ -->
-    <!-- <div class="container">
-
-    </div> -->
+    
+    <!-- SADRZAJ STRANICE -->
     <div class="container mt-5 pt-5">
 
         <h2 class="border-bottom border-primary"> <strong> KULINARKO </strong> </h2>
@@ -171,6 +169,8 @@
                         echo "<div class='p-2 text-justify'>".$skraceniSadrzaj."</div>";
                         echo "<div class='p-2'>";
                         echo "<form method='POST' action='recept_detaljno.php'>";
+                        echo " <input type='hidden' id='thisPage' name='thisPage' value='".$page."'>";
+                        echo " <input type='hidden' id='thisReceipt' name='thisReceipt' value='".$row["recept_id"]."'>";
                         echo "<button type='submit' class='btn btn-primary float-left'> Read More >> </button>";
                         echo "</form>";
                         echo "</div>";
@@ -227,15 +227,12 @@
                         echo "</li>";
                     }
                 }
+                $mysqli->close();
             }
 
         ?>
 
     </div> <!-- /container -->
-
-    <!-- <form method="POST" action="01_handle.php">
-        <button type="submit" class="btn btn-primary float-left"> Read More >> </button>
-    </form> -->
     
 </body>
 </html>
