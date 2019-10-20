@@ -147,7 +147,7 @@
                 echo "<div class='d-flex flex-column mt-4 mb-3 col-12'>";
                 echo "<div class='p-2 text-justify'>";
                 echo "<h4> Sastojci: </h4>";
-                echo "<ul class='list-group col-4'>";
+                echo "<ul class='list-group col-12 col-md-5'>";
 
                 // ispis sastojaka svakog u novom redu
                 $sastojci = explode(",", $row["sastojci"]);

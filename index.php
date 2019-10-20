@@ -40,22 +40,22 @@
                     <a class="nav-link" href="index.php"> Početna <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Glavna jela </a>
+                    <a class="nav-link" href="glavnaJela.php"> Glavna jela </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Predjela </a>
+                    <a class="nav-link" href="predjela.php"> Predjela </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Supe i čorbe </a>
+                    <a class="nav-link" href="supeIcorbe.php"> Supe i čorbe </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Kolači </a>
+                    <a class="nav-link" href="kolaci.php"> Kolači </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Torte </a>
+                    <a class="nav-link" href="torte.php"> Torte </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Salate </a>
+                    <a class="nav-link" href="salate.php"> Salate </a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -78,7 +78,7 @@
 
         <h2 class="border-bottom border-primary"> <strong> KULINARKO </strong> </h2>
         <!-- <hr> -->
-        <p> Na ovoj internet starnici možete da pronađete najrazličitije recepte domaćih jela. </p>
+        <p> Na ovoj internet stranici možete da pronađete najrazličitije recepte domaćih jela. </p>
 
         <?php
             // header('Content-Type: application/json');
@@ -163,12 +163,12 @@
                         echo "<p class='col-12 text-capitalize'> <h6> <i class='fas fa-user ml-3 mr-1'></i>".$imeAutora." <i class='far fa-clock ml-2 mr-1'></i>".$date."</h6> </p>";
                         echo "</div>";
                         echo "<div class='row'>";
-                        echo "<img src='".$row["slika_jela"]."' alt='Ime slike' class='col-3 rounded float-left'>";
+                        echo "<img src='".$row["slika_jela"]."' alt='Ime slike' class='col-9 col-md-3 rounded float-left'>";
                         echo "<p clas='col-9'>";
                         echo "<div class='d-flex flex-column mb-3 col-9'>";
                         echo "<div class='p-2 text-justify'>".$skraceniSadrzaj."</div>";
                         echo "<div class='p-2'>";
-                        echo "<form method='POST' action='recept_detaljno.php'>";
+                        echo "<form method='POST' action='receptDetaljno.php'>";
                         echo " <input type='hidden' id='thisPage' name='thisPage' value='".$page."'>";
                         echo " <input type='hidden' id='thisReceipt' name='thisReceipt' value='".$row["recept_id"]."'>";
                         echo "<button type='submit' class='btn btn-primary float-left'> Read More >> </button>";
