@@ -21,8 +21,10 @@ $user = new User($db);
 $data = json_decode(file_get_contents("php://input"));
  
 // set product property values
-$user->email = $data->email;
-$email_exists = $user->emailExists();
+// $user->email = $data->email;
+// $email_exists = $user->emailExists();
+$user->username = $data->username;
+$username_exists = $user->usernameExists();
  
 // generate json web token
 include_once 'config/core.php';
@@ -33,7 +35,8 @@ include_once 'php-jwt-master/src/JWT.php';
 use \Firebase\JWT\JWT;
  
 // check if email exists and if password is correct
-if($email_exists && password_verify($data->password, $user->password)){
+// $email_exists
+if($username_exists && password_verify($data->password, $user->password)){
  
     $token = array(
        "iss" => $iss,
@@ -41,7 +44,7 @@ if($email_exists && password_verify($data->password, $user->password)){
        "iat" => $iat,
        "nbf" => $nbf,
        "data" => array(
-           "id" => $user->id,
+           "username" => $user->username,
            "firstname" => $user->firstname,
            "lastname" => $user->lastname,
            "email" => $user->email

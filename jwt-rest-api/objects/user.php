@@ -7,7 +7,7 @@ class User{
     private $table_name = "korisnici"; // UNETI IME TABELE
  
     // object properties
-    public $id;
+    public $username;
     public $firstname;
     public $lastname;
     public $email;
@@ -24,21 +24,24 @@ function create(){
     // insert query
     $query = "INSERT INTO " . $this->table_name . "
             SET
-                firstname = :firstname,
-                lastname = :lastname,
-                email = :email,
-                password = :password";
+                korisnicko_ime = :user,
+                ime = :firstname,
+                prezime = :lastname,
+                el_adresa = :email,
+                lozinka = :password";
  
     // prepare the query
     $stmt = $this->conn->prepare($query);
  
     // sanitize
+    $this->username=htmlspecialchars(strip_tags($this->username));
     $this->firstname=htmlspecialchars(strip_tags($this->firstname));
     $this->lastname=htmlspecialchars(strip_tags($this->lastname));
     $this->email=htmlspecialchars(strip_tags($this->email));
     $this->password=htmlspecialchars(strip_tags($this->password));
  
     // bind the values
+    $stmt->bindParam(':user', $this->username);
     $stmt->bindParam(':firstname', $this->firstname);
     $stmt->bindParam(':lastname', $this->lastname);
     $stmt->bindParam(':email', $this->email);
@@ -59,9 +62,9 @@ function create(){
 function emailExists(){
  
     // query to check if email exists
-    $query = "SELECT id, firstname, lastname, password
+    $query = "SELECT korisnicko_ime, ime, prezime, lozinka
             FROM " . $this->table_name . "
-            WHERE email = ?
+            WHERE el_adresa = ?
             LIMIT 0,1"; // LIMIT (broj redova za odbacivanje), (broj redova za ispisivanje)
  
     // prepare the query
@@ -86,16 +89,60 @@ function emailExists(){
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
         // assign values to object properties
-        $this->id = $row['id'];
-        $this->firstname = $row['firstname'];
-        $this->lastname = $row['lastname'];
-        $this->password = $row['password'];
+        $this->username = $row['korisnicko_ime'];
+        $this->firstname = $row['ime'];
+        $this->lastname = $row['prezime'];
+        $this->password = $row['lozinka'];
  
         // return true because email exists in the database
         return true;
     }
  
     // return false if email does not exist in the database
+    return false;
+}
+
+// check if given username exist in the database
+function usernameExists(){
+ 
+    // query to check if username exists
+    $query = "SELECT ime, prezime, lozinka, el_adresa
+            FROM " . $this->table_name . "
+            WHERE korisnicko_ime = ?
+            LIMIT 0,1"; // LIMIT (broj redova za odbacivanje), (broj redova za ispisivanje)
+ 
+    // prepare the query
+    $stmt = $this->conn->prepare( $query );
+ 
+    // sanitize
+    $this->username=htmlspecialchars(strip_tags($this->username));
+ 
+    // bind given username value
+    $stmt->bindParam(1, $this->username);
+ 
+    // execute the query
+    $stmt->execute();
+ 
+    // get number of rows
+    $num = $stmt->rowCount();
+ 
+    // if username exists, assign values to object properties for easy access and use for php sessions
+    if($num>0){
+ 
+        // get record details / values
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+        // assign values to object properties
+        $this->email = $row['el_adresa'];
+        $this->firstname = $row['ime'];
+        $this->lastname = $row['prezime'];
+        $this->password = $row['lozinka'];
+ 
+        // return true because username exists in the database
+        return true;
+    }
+ 
+    // return false if username does not exist in the database
     return false;
 }
  

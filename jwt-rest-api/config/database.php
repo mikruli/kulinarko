@@ -4,7 +4,7 @@ class Database{
  
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "users"; // UNETI IME BAZE
+    private $db_name = "kulinarko"; // UNETI IME BAZE
     private $username = "root"; // UNETI IME KORISNIKA
     private $password = "";  // UNETI LOZINKU
     public $conn;
