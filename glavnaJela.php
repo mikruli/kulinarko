@@ -60,10 +60,10 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Registracija </a>
+                    <a class="nav-link" href="registration.php"> Registracija </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Prijava </a>
+                    <a class="nav-link" href="login.html"> Prijava </a>
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
