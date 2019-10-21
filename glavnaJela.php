@@ -203,12 +203,14 @@
 
                     // navigacija po stranama
                     for ( $i = 1; $i <= $total_pages; $i++ ) {  // ispisuje linkove za sve strane
-                        echo "<li class='page-item'>";
-                        echo "<a href='glavnaJela.php?page=".$i."'";
-                        // echo "<a href='index.php?page=".$i."'";
+                        
                         if ( $i == $page ) {
-                            echo " class='page-link curPage active'";
+                            echo "<li class='page-item active'>";
+                            echo "<a href='glavnaJela.php?page=".$i."'";
+                            echo " class='page-link curPage'";
                         } else {
+                            echo "<li class='page-item'>";
+                            echo "<a href='glavnaJela.php?page=".$i."'";
                             echo " class='page-link'";
                         }
                         echo ">".$i."</a> ";

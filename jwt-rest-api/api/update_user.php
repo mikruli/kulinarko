@@ -8,16 +8,16 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 // required to encode json web token
-include_once 'config/core.php';
-include_once 'libs/php-jwt-master/src/BeforeValidException.php';
-include_once 'libs/php-jwt-master/src/ExpiredException.php';
-include_once 'libs/php-jwt-master/src/SignatureInvalidException.php';
-include_once 'libs/php-jwt-master/src/JWT.php';
+include_once '../config/core.php';
+include_once '../php-jwt-master/src/BeforeValidException.php';
+include_once '../php-jwt-master/src/ExpiredException.php';
+include_once '../php-jwt-master/src/SignatureInvalidException.php';
+include_once '../php-jwt-master/src/JWT.php';
 use \Firebase\JWT\JWT;
  
 // files needed to connect to database
-include_once 'config/database.php';
-include_once 'objects/user.php';
+include_once '../config/database.php';
+include_once '../objects/user.php';
  
 // get database connection
 $database = new Database();
@@ -46,7 +46,7 @@ if($jwt){
         $user->lastname = $data->lastname;
         $user->email = $data->email;
         $user->password = $data->password;
-        $user->username = $decoded->data->username;
+        $user->username = $decoded->data->username; // korisnicko ime se NE MOZE MENJATI I UZIMA SE KORISNIKO IME IZ JWT TOKENA
         
         // update the user record
         if($user->update()){
