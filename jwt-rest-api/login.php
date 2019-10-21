@@ -34,7 +34,7 @@ include_once 'php-jwt-master/src/SignatureInvalidException.php';
 include_once 'php-jwt-master/src/JWT.php';
 use \Firebase\JWT\JWT;
  
-// check if email exists and if password is correct
+// check if username exists and if password is correct
 // $email_exists
 if($username_exists && password_verify($data->password, $user->password)){
  

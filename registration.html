@@ -61,7 +61,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.php"> Registracija </a>
+                    <a class="nav-link" href="registration.html"> Registracija </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="sign_up" href="./login.html"> Prijava </a>
@@ -74,41 +74,53 @@
         </div>
     </nav>
 
-    <div class="container mt-5 pt-5">
+    <div class="container mt-4 pt-4">
 
         <h1 class="text-center mb-5 pb-4"> <strong> Registration form </strong> </h1>
 
-        <form id="formaPrijava" class="col-md-6 mx-auto" action="" style="background-color: rgb(221, 229, 230)">
+        <form id="formaPrijava" class="col-md-6 mx-auto" style="background-color: rgb(221, 229, 230)" method="POST" action="regValidation.php">
             <fieldset>
                 <legend style="text-align: center"> Registration </legend>
+                <!-- USERNAME -->
                 <div class="form-group">
-                    <label for="imeNaloga"> Username: </label>
-                    <input class="form-control" type="text" name="imeNaloga" id="imeNaloga">
+                    <label for="username"> Korisničko ime*: </label>
+                    <input class="form-control" type="text" name="korisnicko_ime" id="username" required placeholder="user">
                 </div>
+                <!-- PASSWORD -->
                 <div class="form-group">
-                    <label for="sifra"> Password: </label>
-                    <input class="form-control" type="text" name="sifra" id="sifra">
+                    <label for="password"> Šifra*: </label>
+                    <input class="form-control" type="text" name="sifra" id="password" required placeholder="xxx3xxxx">
                 </div>
+                <!-- IME -->
                 <div class="form-group">
-                    <label for="imeKorisnika"> Ime: </label>
-                    <input class="form-control" type="text" name="imeKorisnika" id="imeKorisnika">
+                    <label for="imeKorisnika"> Ime*: </label>
+                    <input class="form-control" type="text" name="ime" id="imeKorisnika" required placeholder="Pera">
                 </div>
+                <!-- PREZIME -->
                 <div class="form-group">
-                    <label for="prezimeKorisnika"> Prezime: </label>
-                    <input class="form-control" type="text" name="prezimeKorisnika" id="prezimeKorisnika">
+                    <label for="prezimeKorisnika"> Prezime*: </label>
+                    <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" required placeholder="Peric">
                 </div>
+                <!-- EMAIL -->
                 <div class="form-group">
-                    <label for="elAdresa"> Email: </label>
-                    <input class="form-control" type="text" name="elAdresa" id="elAdresa">
+                    <label for="email"> Email*: </label>
+                    <input class="form-control" type="email" name="email" id="email" required placeholder="pera@domen.com">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group pt-3">
                     <button type="submit" class="btn btn-primary"> Submit </button>
+                    <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
+                    <input type="reset" class="btn btn-danger" value="Reset">
                     <span class="float-right"> Zaboravili ste šifru ? </span>
                 </div>
             </fieldset>
+            <!-- Element u okviru kojeg ce biti upisane informacije o eventualnim greskama -->
+		    <div class="greska" id="greska"> </div>
         </form>
 
     </div>
+
+    <script type="text/javascript" src="./js/formularObrada.js"></script>
 
 </body>
 </html>

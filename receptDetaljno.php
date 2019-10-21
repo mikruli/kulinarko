@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +63,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.php"> Registracija </a>
+                    <a class="nav-link" href="registration.html"> Registracija </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.html"> Prijava </a>
