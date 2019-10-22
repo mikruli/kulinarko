@@ -135,7 +135,7 @@
                 // $_SESSION["postojeci"] = $nalaziSe;
                 if ( $nalaziSe ) {
                     echo "<div class='alert alert-danger'>";
-                    echo "Registracija nije uspela !!! Korisničko ime je već postoji. Izaberite novo korisničko ime i ponovite registraciju !";
+                    echo "Registracija nije uspela !!! Korisničko ime već postoji. Izaberite novo korisničko ime i ponovite registraciju !";
                     echo  "</div>";
                 } else {
 
