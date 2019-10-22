@@ -99,7 +99,7 @@
             $mysqli = new mysqli($servername, $username, $password, $dbname);
 
             // Proveri konekciju
-            if ( $mysqli->connect_error ) {
+            if ( $mysqli->connect_errno ) {
                 echo "Error: ".$mysqli->connect_error;
             } else {
 
@@ -125,7 +125,7 @@
                 // echo "Broj rezultata = ".$n; // sluzi samo za testiranje
 
                 if ( $result == FALSE ) {
-                    echo "Error: ".$mysqli->error($connection);
+                    echo "Error: ".$mysqli->error;
                 } else {
 
                     while( $row = $result->fetch_assoc() ) {

@@ -1,5 +1,6 @@
 <?php
 
+// podaci o bazi
 $servername = "localhost";
 $username = "root";
 $password = "";
