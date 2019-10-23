@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    
+    // unset($_SESSION["jwt"]);
+
+    session_destroy();
+
+    // header("Location: 1.html");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +32,9 @@
     <script src="./js/bootstrap.js"></script>
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Login page </title>
+    <title> Home page </title>
 </head>
 <body>
-   
     <div class="masthead">
     </div>
     <!-- NAVIGACIONI BAR - Bootswatch - tema Sandstone -->
@@ -38,65 +48,57 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./index.php"> Početna <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php"> Početna <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./glavnaJela.php"> Glavna jela </a>
+                    <a class="nav-link" href="glavnaJela.php"> Glavna jela </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./predjela.php"> Predjela </a>
+                    <a class="nav-link" href="predjela.php"> Predjela </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./supeIcorbe.php"> Supe i čorbe </a>
+                    <a class="nav-link" href="supeIcorbe.php"> Supe i čorbe </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./kolaci.php"> Kolači </a>
+                    <a class="nav-link" href="kolaci.php"> Kolači </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./torte.php"> Torte </a>
+                    <a class="nav-link" href="torte.php"> Torte </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./salate.php"> Salate </a>
+                    <a class="nav-link" href="salate.php"> Salate </a>
                 </li>
             </ul>
+
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="registration.html"> <i class="fas fa-user-plus"></i> Registracija </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="sign_up" href="./login.html"> <i class="fas fa-check"></i> Prijava </a>
+                    <a class="nav-link" href="login.html"> <i class="fas fa-check"></i> Prijava </a>
                 </li>
             </ul>
+
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>
             </form> -->
         </div>
     </nav>
-
+    
+    <!-- SADRZAJ STRANICE -->
     <div class="container mt-5 pt-5">
 
-        <h1 class="text-center mb-5 pb-4"> <strong> Login form </strong> </h1>
-
-        <form id="formaPrijava" class="col-md-6 mx-auto" style="background-color: rgb(221, 229, 230)" method="POST" action="loginValidation.php">
-            <fieldset>
-                <legend style="text-align: center"> Login </legend>
-                <div class="form-group">
-                    <label for="imeNaloga"> Username: </label>
-                    <input class="form-control" type="text" name="imeNaloga" id="imeNaloga">
-                </div>
-                <div class="form-group">
-                    <label for="sifra"> Password: </label>
-                    <input class="form-control" type="password" name="sifra" id="sifra">
-                </div>
-                <div class="form-group pt-3">
-                    <button type="submit" class="btn btn-primary"> Submit </button>
-                    <span class="float-right"> Zaboravili ste šifru ? </span>
-                </div>
-            </fieldset>
-        </form>
-
-    </div>
-
+        <div class='alert alert-info'> Uspešno odjavljivanje. </div>
+        <div class="card border-secondary mb-3">
+            <div class="card-header"> Doviđenja. </div>
+            <div class="card-body">
+                <h4 class="card-title"> Sada ste odjavljeni. </h4>
+                <p class="card-text"> Samo prijavljeni korisnici mogu da dodaju recepte ! </p>
+            </div>
+        </div>
+                        
+    </div> <!-- /container -->
+    
 </body>
 </html>

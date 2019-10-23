@@ -106,15 +106,16 @@
                     <a class="nav-link" href="salate.php"> Salate </a>
                 </li>
             </ul>
+
             <?php
-                if ( !$_SESSION["jwt"] ) {
+                if ( !isset($_SESSION["jwt"]) ) {
             ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.html"> Registracija </a>
+                    <a class="nav-link" href="registration.html"> <i class="fas fa-user-plus"></i> Registracija </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"> Prijava </a>
+                    <a class="nav-link" href="login.html"> <i class="fas fa-check"></i> Prijava </a>
                 </li>
             </ul>
             <?php
@@ -122,10 +123,10 @@
             ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="controlPanel.php"> Nalog </a>
+                    <a class="nav-link" href="controlPanel.php"> <i class="fas fa-user"></i> Nalog </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php"> Odjava </a>
+                    <a class="nav-link" href="logout.php"> <i class="fas fa-power-off"></i> Odjava </a>
                 </li>
             </ul>
             <?php

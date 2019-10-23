@@ -61,14 +61,33 @@
                     <a class="nav-link" href="salate.php"> Salate </a>
                 </li>
             </ul>
+
+            <?php
+                if ( !isset($_SESSION["jwt"]) ) {
+            ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.html"> Registracija </a>
+                    <a class="nav-link" href="registration.html"> <i class="fas fa-user-plus"></i> Registracija </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"> Prijava </a>
+                    <a class="nav-link" href="login.html"> <i class="fas fa-check"></i> Prijava </a>
                 </li>
             </ul>
+            <?php
+                } else {
+            ?>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="controlPanel.php"> <i class="fas fa-user"></i> Nalog </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php"> <i class="fas fa-power-off"></i> Odjava </a>
+                </li>
+            </ul>
+            <?php
+                }
+            ?>
+
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>

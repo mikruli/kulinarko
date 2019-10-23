@@ -62,14 +62,16 @@
                     <a class="nav-link" href="salate.php"> Salate </a>
                 </li>
             </ul>
+
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="registration.html"> Registracija </a>
+                    <a class="nav-link" href="registration.html"> <i class="fas fa-user-plus"></i> Registracija </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"> Prijava </a>
+                    <a class="nav-link" href="login.html"> <i class="fas fa-check"></i> Prijava </a>
                 </li>
             </ul>
+
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>
