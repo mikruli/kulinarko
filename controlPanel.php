@@ -107,10 +107,10 @@
                 <a class="nav-link" data-toggle="tab" href="#lozinka"> Lozinka </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#noviRecept"> Dodaj recept </a>
+                <a class="nav-link" data-toggle="tab" href="#noviRecept"> Novi recept </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#postojeciRecept"> Izmeni postojeci recept </a>
+                <a class="nav-link" data-toggle="tab" href="#postojeciRecept"> Postojeci recepti </a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
@@ -121,12 +121,12 @@
                         <!-- IME -->
                         <div class="form-group">
                             <label for="imeKorisnika"> Ime*: </label>
-                            <input class="form-control" type="text" name="ime" id="imeKorisnika" placeholder="Pera">
+                            <input class="form-control" type="text" name="ime" id="imeKorisnika" required placeholder="Pera">
                         </div>
                         <!-- PREZIME -->
                         <div class="form-group">
                             <label for="prezimeKorisnika"> Prezime*: </label>
-                            <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" placeholder="Peric">
+                            <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" required placeholder="Peric">
                         </div>
                         <!-- EMAIL -->
                         <div class="form-group">
@@ -138,7 +138,7 @@
                         <!-- DATUM RODJENJA -->
                         <div class="form-group">
                             <label for="datumRodjenja"> Datum rođenja: </label>
-                            <input class="form-control" type="text" name="datumRodjenja" id="datumRodjenja" placeholder="YYYY-MM-DD">
+                            <input class="form-control" type="date" name="datumRodjenja" id="datumRodjenja" placeholder="YYYY-MM-DD">
                         </div>
                         <!-- ADRESA STANOVANJA -->
                         <div class="form-group">
@@ -150,11 +150,10 @@
                             <label for="drzavaStanovanja"> Država stanovanja: </label>
                             <input class="form-control" type="email" name="drzavaStanovanja" id="drzavaStanovanja">
                         </div>
-
                             <!-- POL -->
                             <div class="form-group">
                             <label for="pol"> Pol: </label>
-                            <input class="form-control" type="textl" name="pol" id="pol" maxlength="1">
+                            <input class="form-control" type="textl" name="pol" id="pol" maxlength="1" placeholder="M/Ž">
                         </div>
                             <!-- TELEFON -->
                             <div class="form-group">
@@ -173,7 +172,7 @@
                         </div>
                     </fieldset>
                     <!-- Element u okviru kojeg ce biti upisane informacije o eventualnim greskama -->
-                    <div class="greska text-danger"> <strong id="greska"> </strong> </div>
+                    <div class="greska text-danger"> <strong id="greskaPodaci"> </strong> </div>
                 </form>
             </div>
             <div class="tab-pane fade" id="lozinka">     
@@ -264,5 +263,7 @@
                 
     </div> <!-- /container -->
     
+    <script type="text/javascript" src="./js/promeniPodatkeObrada.js"></script>
+
 </body>
 </html>

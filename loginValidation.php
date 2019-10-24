@@ -41,7 +41,10 @@
     // echo "DECODED RESULT: <br>";
     // print_r($result);
     // echo "<br>";
-    $_SESSION["jwt"] = $result->jwt;
+    if ( isset($result->jwt) ) {
+        $_SESSION["jwt"] = $result->jwt;
+    }
+    
     // echo "OVO JE SAMO JWT: ".$_SESSION["jwt"];
 
 ?> 
@@ -144,7 +147,7 @@
     <div class="container mt-5 pt-5">
         
     <?php
-        if ( !$_SESSION["jwt"] ) {
+        if ( !isset($_SESSION["jwt"]) ) {
     ?>
             <div class='alert alert-danger'> Pogrešna lozinka ili korisničko ime. Pokušajte ponovo. </div>
     <?php
