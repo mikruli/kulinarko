@@ -261,31 +261,32 @@
                 <form id="promenaLozinke" class="col-md-6 mt-4" method="POST" action="promeniLozinku.php">
                     <fieldset>
                         <legend style="text-align: center"> Promena lozinke i osnovnih podataka </legend>
+                        <p class="form-text text-muted mt-3 mb-3"> Na ovoj stranici možete da promenite osnovne podatke i lozinku. </p>
                         <!-- IME -->
                         <div class="form-group">
-                            <label for="imeKorisnika"> Ime*: </label>
-                            <input class="form-control" type="text" name="ime" id="imeKorisnika" required placeholder="Pera" value="<?php echo $logedFirstname; ?>">
+                            <label for="imeKorisnikaLozinka"> Ime*: </label>
+                            <input class="form-control" type="text" name="imeLozinka" id="imeKorisnikaLozinka" required placeholder="Pera" value="<?php echo $logedFirstname; ?>">
                         </div>
                         <!-- PREZIME -->
                         <div class="form-group">
-                            <label for="prezimeKorisnika"> Prezime*: </label>
-                            <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" required placeholder="Peric" value="<?php echo $logedLastname; ?>">
+                            <label for="prezimeKorisnikaLozinka"> Prezime*: </label>
+                            <input class="form-control" type="text" name="prezimeLozinka" id="prezimeKorisnikaLozinka" required placeholder="Peric" value="<?php echo $logedLastname; ?>">
                         </div>
                         <!-- EMAIL -->
                         <div class="form-group">
-                            <label for="email"> Email*: </label>
-                            <input class="form-control" type="email" name="email" id="email" required placeholder="pera@domen.com" value="<?php echo $logedEmail; ?>">
+                            <label for="emailLozinka"> Email*: </label>
+                            <input class="form-control" type="email" name="emailLozinka" id="emailLozinka" required placeholder="pera@domen.com" value="<?php echo $logedEmail; ?>">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <!-- OLD PASSWORD -->
                         <div class="form-group">
                             <label for="staraSifra"> Stara šifra*: </label>
-                            <input class="form-control" type="text" name="staraSifra" id="staraSifra" required>
+                            <input class="form-control" type="password" name="staraSifra" id="staraSifra" required>
                         </div>
                         <!-- NEW PASSWORD -->
                         <div class="form-group">
                             <label for="novaSifra"> Nova šifra*: </label>
-                            <input class="form-control" type="password" name="novaSifra" id="novaSifra" required>
+                            <input class="form-control" type="password" name="novaSifra" id="novaSifra" required placeholder="Xxx3xxxx">
                         </div>
                         <!-- NEW PASSWORD AGAIN -->
                         <div class="form-group">
@@ -298,7 +299,7 @@
                         </div>
                     </fieldset>
                     <!-- Element u okviru kojeg ce biti upisane informacije o eventualnim greskama -->
-                    <div class="greska text-danger"> <strong id="greska"> </strong> </div>
+                    <div class="greska text-danger"> <strong id="greskaLozinka"> </strong> </div>
                 </form>
             </div>
             <div class="tab-pane fade" id="noviRecept">  
@@ -313,7 +314,7 @@
                         <!-- SASTOJCI -->
                         <div class="form-group">
                             <label for="sastojci"> Sastojci*: </label>
-                            <textarea class="form-control" name="sastojci" id="sastojci" rows="6" required maxlength="510"></textarea>
+                            <textarea class="form-control" name="sastojci" id="sastojci" rows="6" required maxlength="510" placeholder="Sastojke odvajajte zarezom npr. 3 jaja, 200 grama brašna, čaša mleka, itd. "></textarea>
                         </div>
                         <!-- SADRŽAJ RECEPTA -->
                         <div class="form-group">
@@ -361,7 +362,8 @@
                 
     </div> <!-- /container -->
     
-    <script type="text/javascript" src="./js/promeniPodatkeObrada.js"></script>
+    <script type="text/javascript" src="js/promeniPodatkeObrada.js"></script>
+    <script type="text/javascript" src="js/promeniLozinkuObrada.js"></script>
 
 </body>
 </html>

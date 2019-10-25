@@ -93,13 +93,11 @@
             echo "Error: ".$mysqli->error;          
         } else {
             // podaci su uspesno upisani u bazu
-            echo "PODACI SU USPENO UPISANI U BAZU.";
+            // echo "PODACI SU USPENO UPISANI U BAZU.";
             $poruka = "Dodatni podaci su uspešno upisani u bazu";
         }
         $mysqli->close();
     }
-
-    // Sada u bazu upisujemo podatke o kojima ovisi jwt token i azuriramo jwt token u sesiji
 
 ?>
 
@@ -207,7 +205,7 @@
     <?php
         } else {
     ?>
-            <div class='alert alert-success'> Dodatni podaci su uspešno upisani u bazu. </div>
+            <div class='alert alert-success'> <?php echo $poruka ?> </div>
     <?php
         }
     ?>
