@@ -1,5 +1,87 @@
 <?php
     session_start();
+
+    // podaci o bazi podataka
+    include "php/podaciObazi.php";
+
+    // validacija i uzimanje podataka o korisniku koji je ulogovan
+    // pripremamo podatke za slanje
+    $data = array(
+        'jwt' => $_SESSION["jwt"]
+    );
+
+    // pretvaranje podataka u json datoteku
+    $payload = json_encode($data);
+
+    // pripremamo sve za slanje i podesavamo parametre
+    $url = "http://localhost/kulinarko/jwt-rest-api/api/validate_token.php";
+    $client = curl_init($url);
+    curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($client, CURLINFO_HEADER_OUT, true);
+    curl_setopt($client, CURLOPT_POST, true);
+    curl_setopt($client, CURLOPT_POSTFIELDS, $payload);
+
+    // Postavljamo HTTP Header za POST request 
+    curl_setopt($client, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($payload))
+    );
+
+    // Saljemo POST request
+    $response = curl_exec($client);
+    $result = json_decode($response);
+    
+    // I zatvaramo cURL session handle
+    curl_close($client);
+
+    $logedUsername = $result->data->username;
+    $logedFirstname = $result->data->firstname;
+    $logedLastname = $result->data->lastname;
+    $logedEmail = $result->data->email;
+
+    // echo "USERNAME: ".$logedUsername."<br>"; // samo radi testiranja
+    // echo "IME: ".$logedFirstname."<br>"; // samo radi testiranja
+    // echo "PREZIME: ".$logedLastname."<br>"; // samo radi testiranja
+    // echo "E-MAIL: ".$logedEmail."<br>"; // samo radi testiranja
+
+    // Uspostavi novu konekciju
+    $mysqli = new mysqli($servername, $username, $password, $dbname);
+
+    // Proveri konekciju
+    if ( $mysqli->connect_errno ) {
+        echo "Error: ".$mysqli->connect_error;
+    } else {
+
+        // Postavi UTF8 karakter set kao podrazumevani set za razmenu podataka sa bazom
+        $mysqli->set_charset("utf8");
+
+        // sql upit u bazu da bi se dobili svi podaci o prijavljenom korisniku
+        $query = "SELECT * FROM ".$datatable_kor." WHERE korisnicko_ime = '".$logedUsername."'";
+        $result = $mysqli->query($query);
+
+        $n = $result->num_rows;
+        // echo "Broj rezultata = ".$n."<br>"; // sluzi samo za testiranje
+
+        if ( $result == FALSE ) {
+            echo "Error: ".$mysqli->error;
+        } else {
+
+            // citamo iz baze podataka ostale podatke o korisniku kojih nema u jwt tokenu
+            while( $row = $result->fetch_assoc() ) {
+
+                $logedDatRod = $row["datum_rodjenja"];
+                $logedAdrStan = $row["adresa_stanovanja"];
+                $logedDrzStan = $row["drzava_stanovanja"];
+                $logedPol = $row["pol"];
+                $logedTelefon = $row["telefon"];
+                $logedMobTelefon = $row["mobilni_telefon"];
+                
+            }
+
+        }
+        $mysqli->close();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -117,53 +199,53 @@
             <div class="tab-pane fade active show" id="podaci">
                 <form id="formaPodaci" class="col-md-6 mt-4" method="POST" action="promeniPodatke.php">
                     <fieldset>
-                        <legend style="text-align: center"> Podaci o korisniku </legend>
+                        <legend style="text-align: center"> Dodatni podaci o korisniku </legend>
                         <!-- IME -->
                         <div class="form-group">
-                            <label for="imeKorisnika"> Ime*: </label>
-                            <input class="form-control" type="text" name="ime" id="imeKorisnika" required placeholder="Pera">
+                            <label for="imeKorisnika"> Ime: </label>
+                            <input class="form-control" type="text" name="ime" id="imeKorisnika" disabled placeholder="Pera" value="<?php echo $logedFirstname; ?>">
                         </div>
                         <!-- PREZIME -->
                         <div class="form-group">
-                            <label for="prezimeKorisnika"> Prezime*: </label>
-                            <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" required placeholder="Peric">
+                            <label for="prezimeKorisnika"> Prezime: </label>
+                            <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" disabled placeholder="Peric" value="<?php echo $logedLastname; ?>">
                         </div>
                         <!-- EMAIL -->
                         <div class="form-group">
-                            <label for="email"> Email*: </label>
-                            <input class="form-control" type="email" name="email" id="email" required placeholder="pera@domen.com">
+                            <label for="email"> Email: </label>
+                            <input class="form-control" type="email" name="email" id="email" disabled placeholder="pera@domen.com" value="<?php echo $logedEmail; ?>">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
 
                         <!-- DATUM RODJENJA -->
                         <div class="form-group">
                             <label for="datumRodjenja"> Datum rođenja: </label>
-                            <input class="form-control" type="date" name="datumRodjenja" id="datumRodjenja" placeholder="YYYY-MM-DD">
+                            <input class="form-control" type="text" name="datumRodjenja" id="datumRodjenja" placeholder="YYYY-MM-DD" value="<?php echo $logedDatRod; ?>">
                         </div>
                         <!-- ADRESA STANOVANJA -->
                         <div class="form-group">
                             <label for="adresaStanovanja"> Adresa stanovanja: </label>
-                            <input class="form-control" type="text" name="adresaStanovanja" id="adresaStanovanja">
+                            <input class="form-control" type="text" name="adresaStanovanja" id="adresaStanovanja" value="<?php echo $logedAdrStan; ?>">
                         </div>
                         <!-- DRZAVA STANOVANJA -->
                         <div class="form-group">
                             <label for="drzavaStanovanja"> Država stanovanja: </label>
-                            <input class="form-control" type="email" name="drzavaStanovanja" id="drzavaStanovanja">
+                            <input class="form-control" type="text" name="drzavaStanovanja" id="drzavaStanovanja" value="<?php echo $logedDrzStan; ?>">
                         </div>
                             <!-- POL -->
                             <div class="form-group">
                             <label for="pol"> Pol: </label>
-                            <input class="form-control" type="textl" name="pol" id="pol" maxlength="1" placeholder="M/Ž">
+                            <input class="form-control" type="text" name="pol" id="pol" maxlength="1" placeholder="M/Ž" value="<?php echo $logedPol; ?>">
                         </div>
                             <!-- TELEFON -->
                             <div class="form-group">
                             <label for="telefon"> Telefon: </label>
-                            <input class="form-control" type="text" name="telefon" id="telefon">
+                            <input class="form-control" type="text" name="telefon" id="telefon" value="<?php echo $logedTelefon; ?>">
                         </div>
                             <!-- MOBILNI TELEFON -->
                             <div class="form-group">
                             <label for="mobilniTelefon"> Mobilni telefon: </label>
-                            <input class="form-control" type="text" name="mobilniTelefon" id="mobilniTelefon">
+                            <input class="form-control" type="text" name="mobilniTelefon" id="mobilniTelefon" value="<?php echo $logedMobTelefon; ?>">
                         </div>
                         
                         <div class="form-group pt-3">
@@ -178,7 +260,23 @@
             <div class="tab-pane fade" id="lozinka">     
                 <form id="promenaLozinke" class="col-md-6 mt-4" method="POST" action="promeniLozinku.php">
                     <fieldset>
-                        <legend style="text-align: center"> Promena lozinke </legend>
+                        <legend style="text-align: center"> Promena lozinke i osnovnih podataka </legend>
+                        <!-- IME -->
+                        <div class="form-group">
+                            <label for="imeKorisnika"> Ime*: </label>
+                            <input class="form-control" type="text" name="ime" id="imeKorisnika" required placeholder="Pera" value="<?php echo $logedFirstname; ?>">
+                        </div>
+                        <!-- PREZIME -->
+                        <div class="form-group">
+                            <label for="prezimeKorisnika"> Prezime*: </label>
+                            <input class="form-control" type="text" name="prezime" id="prezimeKorisnika" required placeholder="Peric" value="<?php echo $logedLastname; ?>">
+                        </div>
+                        <!-- EMAIL -->
+                        <div class="form-group">
+                            <label for="email"> Email*: </label>
+                            <input class="form-control" type="email" name="email" id="email" required placeholder="pera@domen.com" value="<?php echo $logedEmail; ?>">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
                         <!-- OLD PASSWORD -->
                         <div class="form-group">
                             <label for="staraSifra"> Stara šifra*: </label>
