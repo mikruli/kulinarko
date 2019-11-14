@@ -303,7 +303,7 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="noviRecept">  
-                <form id="noviRecept" class="col-md-6 mt-4" method="POST" action="dodajNoviRecept.php">
+                <form id="noviRecept" class="col-md-6 mt-4" method="POST" action="dodajNoviRecept.php" enctype="multipart/form-data">
                     <fieldset>
                         <legend style="text-align: center"> Novi recept </legend>
                         <!-- NAZIV RECEPTA -->
@@ -341,8 +341,8 @@
                         <!-- FOTOGRAFIJA JELA -->
                         <div class="form-group">
                             <label for="fotografijaJela">File input</label>
-                            <input type="file" class="form-control-file" id="fotografijaJela" aria-describedby="fileHelp">
-                            <small id="fileHelp" class="form-text text-muted"> Slika ne sme biti veca od 900 kB. </small>
+                            <input type="file" class="form-control-file" id="fotografijaJela" aria-describedby="fileHelp" name="fotografijaJela">
+                            <small id="fileHelp" class="form-text text-muted"> Slika ne sme biti veca od 900 kB i mora da bude u jpg, bmp ili png formatu. </small>
                         </div>
                         <div class="form-group pt-3">
                             <button type="submit" class="btn btn-primary"> Dodaj recept </button>
