@@ -343,7 +343,7 @@
                         <div class="form-group">
                             <label for="fotografijaJela">File input</label>
                             <!-- MAX_FILE_SIZE must precede the file input field -->
-                            <input type="hidden" name="MAX_FILE_SIZE" value="30000">
+                            <!-- <input type="hidden" name="MAX_FILE_SIZE" value="30000"> -->
                             <input type="file" class="form-control-file" id="fotografijaJela" aria-describedby="fileHelp" name="fotografijaJela">
                             <small id="fileHelp" class="form-text text-muted"> Slika ne sme biti veca od 900 kB i mora da bude u jpg, bmp ili png formatu. </small>
                         </div>
