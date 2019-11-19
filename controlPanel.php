@@ -302,7 +302,8 @@
                     <div class="greska text-danger"> <strong id="greskaLozinka"> </strong> </div>
                 </form>
             </div>
-            <div class="tab-pane fade" id="noviRecept">  
+            <div class="tab-pane fade" id="noviRecept">
+                <!-- The data encoding type, enctype, MUST be specified as below -->  
                 <form id="noviRecept" class="col-md-6 mt-4" method="POST" action="dodajNoviRecept.php" enctype="multipart/form-data">
                     <fieldset>
                         <legend style="text-align: center"> Novi recept </legend>
@@ -341,6 +342,8 @@
                         <!-- FOTOGRAFIJA JELA -->
                         <div class="form-group">
                             <label for="fotografijaJela">File input</label>
+                            <!-- MAX_FILE_SIZE must precede the file input field -->
+                            <input type="hidden" name="MAX_FILE_SIZE" value="30000">
                             <input type="file" class="form-control-file" id="fotografijaJela" aria-describedby="fileHelp" name="fotografijaJela">
                             <small id="fileHelp" class="form-text text-muted"> Slika ne sme biti veca od 900 kB i mora da bude u jpg, bmp ili png formatu. </small>
                         </div>

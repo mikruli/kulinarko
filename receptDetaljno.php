@@ -43,22 +43,22 @@
                     <a class="nav-link" href="index.php"> Početna <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Glavna jela </a>
+                    <a class="nav-link" href="glavnaJela.php"> Glavna jela </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Predjela </a>
+                    <a class="nav-link" href="predjela.php"> Predjela </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Supe i čorbe </a>
+                    <a class="nav-link" href="supeIcorbe.php"> Supe i čorbe </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Kolači </a>
+                    <a class="nav-link" href="kolaci.php"> Kolači </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Torte </a>
+                    <a class="nav-link" href="torte.php"> Torte </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Salate </a>
+                    <a class="nav-link" href="salate.php"> Salate </a>
                 </li>
             </ul>
 
