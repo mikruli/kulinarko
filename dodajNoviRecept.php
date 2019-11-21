@@ -111,8 +111,8 @@
             $poruke = [];
             $imeSlikeRecepta = $_FILES["fotografijaJela"]["name"];
             $file_size = $_FILES["fotografijaJela"]["size"];
-            echo "IME FAJLA: ".$imeSlikeRecepta."<br>";
-            echo "VELICINA FAJLA JE: ".$file_size."<br>";
+            // echo "IME FAJLA: ".$imeSlikeRecepta."<br>";
+            // echo "VELICINA FAJLA JE: ".$file_size."<br>";
             // informacija koliko je fajlova vec upisano u direktorijum
             $fi = new FilesystemIterator($upload_directory, FilesystemIterator::SKIP_DOTS);
             $brojFajlova = iterator_count($fi);
@@ -131,6 +131,11 @@
 
             if ( $file_size > 3145728 ) {
                 $poruke[] = "Fajl ne moze biti veci od 3 MB. <br>";
+                $uploadOK = 0;
+            }
+
+            if ( $file_size == 0 ) {
+                $poruke[] = "Veličina slike je veća od dozvoljene ili slika nije ni prosleđena.";
                 $uploadOK = 0;
             }
 
